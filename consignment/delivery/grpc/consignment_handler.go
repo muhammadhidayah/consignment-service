@@ -15,17 +15,20 @@ func NewConsignmentHandler(consusecase consignment.Usecase) *ConsignmentHandler 
 	return &ConsignmentHandler{consusecase}
 }
 
-func (handler *ConsignmentHandler) CreateConsignment(ctx context.Context, req *pb.Consignment) (*pb.Response, error) {
+func (handler *ConsignmentHandler) CreateConsignment(ctx context.Context, req *pb.Consignment, res *pb.Response) error {
 	consignment, err := handler.CUsecase.Create(req)
 
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return &pb.Response{Created: true, Consignment: consignment}, nil
+	res.Created = true
+	res.Consignment = consignment
+	return nil
 }
 
-func (handler *ConsignmentHandler) GetConsignments(ctx context.Context, req *pb.GetRequest) (*pb.Response, error) {
+func (handler *ConsignmentHandler) GetConsignments(ctx context.Context, req *pb.GetRequest, res *pb.Response) error {
 	consignments, _ := handler.CUsecase.GetAll()
-	return &pb.Response{Consignments: consignments}, nil
+	res.Consignments = consignments
+	return nil
 }
