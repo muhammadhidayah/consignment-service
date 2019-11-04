@@ -23,3 +23,7 @@ func (repo *syncRepository) Create(consignment *pb.Consignment) (*pb.Consignment
 	repo.mu.Unlock()
 	return consignment, nil
 }
+
+func (repo *syncRepository) GetAll() ([]*pb.Consignment, error) {
+	return repo.consignment, nil
+}

@@ -22,3 +22,7 @@ func (usecase *consignmentUC) Create(consignment *pb.Consignment) (*pb.Consignme
 
 	return res, nil
 }
+
+func (usecase *consignmentUC) GetAll() ([]*pb.Consignment, error) {
+	return usecase.repo.GetAll()
+}

@@ -24,3 +24,8 @@ func (handler *ConsignmentHandler) CreateConsignment(ctx context.Context, req *p
 
 	return &pb.Response{Created: true, Consignment: consignment}, nil
 }
+
+func (handler *ConsignmentHandler) GetConsignments(ctx context.Context, req *pb.GetRequest) (*pb.Response, error) {
+	consignments, _ := handler.CUsecase.GetAll()
+	return &pb.Response{Consignments: consignments}, nil
+}
